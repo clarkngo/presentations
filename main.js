@@ -11,16 +11,6 @@ const isVibeDeck = deck.includes('vibe-coding');
 
 const section = document.querySelector('[data-markdown]');
 
-if (isVibeDeck) {
-  document.documentElement.classList.add('deck-vibe');
-  await import('./styles/vibe-coding.css');
-  document.title = deck.includes('aviators')
-    ? 'Vibe Coding for Future Aviators'
-    : 'The Vibe Coding Revolution';
-} else {
-  await import('reveal.js/dist/theme/white-contrast.css');
-}
-
 async function prepareMarkdown() {
   if (!section) return;
 
@@ -47,26 +37,40 @@ async function prepareMarkdown() {
   section.replaceChildren(template);
 }
 
-try {
-  await prepareMarkdown();
-} catch (error) {
-  console.error(error);
-  if (section) {
-    section.outerHTML = `<section><h2>Could not load deck</h2><p>${deck}</p></section>`;
+async function init() {
+  if (isVibeDeck) {
+    document.documentElement.classList.add('deck-vibe');
+    await import('./styles/vibe-coding.css');
+    document.title = deck.includes('aviators')
+      ? 'Vibe Coding for Future Aviators'
+      : 'The Vibe Coding Revolution';
+  } else {
+    await import('reveal.js/dist/theme/white-contrast.css');
   }
+
+  try {
+    await prepareMarkdown();
+  } catch (error) {
+    console.error(error);
+    if (section) {
+      section.outerHTML = `<section><h2>Could not load deck</h2><p>${deck}</p></section>`;
+    }
+  }
+
+  Reveal.initialize({
+    hash: true,
+    slideNumber: true,
+    center: true,
+    width: isVibeDeck ? 1100 : 960,
+    height: isVibeDeck ? 900 : 700,
+    margin: 0.04,
+    transition: isVibeDeck ? 'slide' : 'fade',
+    backgroundTransition: 'fade',
+    plugins: [Markdown, Highlight],
+    markdown: {
+      verticalSeparator: '\r?\n--\r?\n',
+    },
+  });
 }
 
-Reveal.initialize({
-  hash: true,
-  slideNumber: true,
-  center: true,
-  width: isVibeDeck ? 1100 : 960,
-  height: isVibeDeck ? 900 : 700,
-  margin: 0.04,
-  transition: isVibeDeck ? 'slide' : 'fade',
-  backgroundTransition: 'fade',
-  plugins: [Markdown, Highlight],
-  markdown: {
-    verticalSeparator: '\r?\n--\r?\n',
-  },
-});
+init();
