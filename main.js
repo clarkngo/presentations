@@ -8,6 +8,8 @@ import 'reveal.js/plugin/highlight/monokai.css';
 const params = new URLSearchParams(window.location.search);
 const deck = params.get('deck') || 'demo-presentation';
 const isVibeDeck = deck.includes('vibe-coding');
+const isLifeDeck = deck.includes('clark') || deck.includes('meet-clark');
+const isThemedDeck = isVibeDeck || isLifeDeck;
 
 const section = document.querySelector('[data-markdown]');
 
@@ -44,6 +46,10 @@ async function init() {
     document.title = deck.includes('aviators')
       ? 'Vibe Coding for Future Aviators'
       : 'The Vibe Coding Revolution';
+  } else if (isLifeDeck) {
+    document.documentElement.classList.add('deck-life');
+    await import('./styles/clark-life.css');
+    document.title = 'Meet Clark Ngo';
   } else {
     await import('reveal.js/dist/theme/white-contrast.css');
   }
@@ -61,10 +67,10 @@ async function init() {
     hash: true,
     slideNumber: true,
     center: true,
-    width: isVibeDeck ? 1100 : 960,
-    height: isVibeDeck ? 900 : 700,
+    width: isThemedDeck ? 1100 : 960,
+    height: isThemedDeck ? 900 : 700,
     margin: 0.04,
-    transition: isVibeDeck ? 'slide' : 'fade',
+    transition: isThemedDeck ? 'slide' : 'fade',
     backgroundTransition: 'fade',
     plugins: [Markdown, Highlight],
     markdown: {
