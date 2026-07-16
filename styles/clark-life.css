@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Sora:wght@600;700;800&display=swap');
+
+:root {
+  --life-ink: #102a43;
+  --life-ink-soft: #243b53;
+  --life-muted: #627d98;
+  --life-teal: #0f766e;
+  --life-coral: #e11d48;
+  --life-sun: #ea580c;
+  --life-card: rgba(255, 255, 255, 0.82);
+  --life-line: rgba(16, 42, 67, 0.12);
+  --life-mint: #d8f3ef;
+  --life-sky: #e0f2fe;
+  --life-sand: #fff7ed;
+}
+
+html.deck-life,
+html.deck-life body {
+  background: #f8fafc;
+}
+
+.deck-life .reveal {
+  font-family: 'Figtree', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--life-ink-soft);
+  background:
+    radial-gradient(ellipse 70% 45% at 15% 10%, rgba(15, 118, 110, 0.18), transparent 55%),
+    radial-gradient(ellipse 55% 40% at 90% 85%, rgba(225, 29, 72, 0.1), transparent 50%),
+    linear-gradient(165deg, var(--life-sky) 0%, #f8fafc 45%, var(--life-sand) 100%);
+}
+
+.deck-life .reveal::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background:
+    repeating-linear-gradient(
+      -18deg,
+      transparent,
+      transparent 48px,
+      rgba(15, 118, 110, 0.035) 48px,
+      rgba(15, 118, 110, 0.035) 49px
+    );
+  z-index: 0;
+}
+
+@keyframes life-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes life-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.deck-life .reveal .slides {
+  text-align: left;
+}
+
+.deck-life .reveal .slides > section,
+.deck-life .reveal .slides > section > section {
+  padding: 0.45em 5% 0.8em;
+  box-sizing: border-box;
+}
+
+.deck-life .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, blockquote, table, .hobby-grid, .media-row, .link-row, .stat-row, .phase) {
+  animation: life-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-life .reveal .slides section.present > h2 {
+  animation-delay: 0.04s;
+}
+.deck-life .reveal .slides section.present > h3 {
+  animation-delay: 0.08s;
+}
+.deck-life .reveal .slides section.present > p:nth-of-type(1) {
+  animation-delay: 0.12s;
+}
+.deck-life .reveal .slides section.present > :is(ul, .hobby-grid, .media-row, .link-row, .stat-row) {
+  animation-delay: 0.16s;
+}
+
+.deck-life .reveal h1,
+.deck-life .reveal h2,
+.deck-life .reveal h3,
+.deck-life .reveal h4 {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  color: var(--life-ink);
+  text-transform: none;
+  letter-spacing: -0.03em;
+  line-height: 1.12;
+  text-shadow: none;
+}
+
+.deck-life .reveal h1 {
+  font-size: 2.1em;
+  font-weight: 800;
+  margin-bottom: 0.25em;
+}
+
+.deck-life .reveal h2 {
+  font-size: 1.45em;
+  margin-bottom: 0.3em;
+}
+
+.deck-life .reveal h2::after {
+  content: '';
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.4rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--life-teal), var(--life-coral));
+  transform-origin: left center;
+  animation: life-bar 0.55s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-life .reveal h3 {
+  font-size: 1em;
+  color: var(--life-teal);
+  margin-bottom: 0.4em;
+}
+
+.deck-life .reveal p,
+.deck-life .reveal li {
+  font-size: 0.92em;
+  line-height: 1.32;
+  color: var(--life-ink-soft);
+}
+
+.deck-life .reveal p {
+  margin: 0.3em 0;
+}
+
+.deck-life .reveal strong {
+  color: var(--life-ink);
+  font-weight: 700;
+}
+
+.deck-life .reveal em {
+  color: var(--life-coral);
+  font-style: italic;
+}
+
+.deck-life .reveal a {
+  color: var(--life-teal);
+  text-decoration: underline;
+  text-underline-offset: 0.12em;
+}
+
+.deck-life .reveal ul,
+.deck-life .reveal ol {
+  display: block;
+  margin: 0.3em 0;
+  padding-left: 1.1em;
+}
+
+.deck-life .reveal li {
+  margin: 0.22em 0;
+}
+
+.deck-life .reveal li::marker {
+  color: var(--life-teal);
+}
+
+.deck-life .reveal .slide-number {
+  font-family: 'Figtree', sans-serif;
+  color: var(--life-muted);
+  background: transparent;
+}
+
+.deck-life .reveal .controls {
+  color: var(--life-teal);
+}
+
+.deck-life .reveal .progress {
+  color: var(--life-coral);
+  height: 3px;
+}
+
+.deck-life .reveal .slides section[data-state='title'],
+.deck-life .reveal .slides section[data-state='chapter'],
+.deck-life .reveal .slides section[data-state='closing'] {
+  text-align: center;
+}
+
+.deck-life .reveal .slides section[data-state='title'] h1,
+.deck-life .reveal .slides section[data-state='chapter'] h2,
+.deck-life .reveal .slides section[data-state='closing'] h2 {
+  text-align: center;
+}
+
+.deck-life .reveal .slides section[data-state='title'] h2::after,
+.deck-life .reveal .slides section[data-state='chapter'] h2::after,
+.deck-life .reveal .slides section[data-state='closing'] h2::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deck-life .reveal .slides section[data-state='title'] h1 {
+  font-size: 2.3em;
+}
+
+.deck-life .reveal .slides section[data-state='title'] p,
+.deck-life .reveal .slides section[data-state='chapter'] p,
+.deck-life .reveal .slides section[data-state='closing'] p {
+  text-align: center;
+  max-width: 20em;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--life-muted);
+}
+
+.deck-life .reveal .slides section[data-state='chapter'] h2 {
+  font-size: 1.9em;
+}
+
+.deck-life .reveal .tagline {
+  display: inline-block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--life-coral);
+  margin-bottom: 0.6em;
+}
+
+.deck-life .reveal .stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0.7em 0;
+}
+
+.deck-life .reveal .stat {
+  background: var(--life-card);
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  padding: 0.7em 0.75em;
+  text-align: center;
+}
+
+.deck-life .reveal .stat strong {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 1.15em;
+  color: var(--life-teal);
+  margin-bottom: 0.15em;
+}
+
+.deck-life .reveal .stat span {
+  display: block;
+  font-size: 0.62em;
+  color: var(--life-muted);
+  line-height: 1.25;
+}
+
+.deck-life .reveal .hobby-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  margin: 0.65em 0;
+}
+
+.deck-life .reveal .hobby-card {
+  background: var(--life-card);
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  padding: 0.7em 0.75em;
+  min-height: 4.2em;
+}
+
+.deck-life .reveal .hobby-card h3 {
+  margin: 0 0 0.25em;
+  font-size: 0.78em;
+}
+
+.deck-life .reveal .hobby-card p {
+  margin: 0;
+  font-size: 0.62em;
+  color: var(--life-muted);
+  line-height: 1.3;
+}
+
+.deck-life .reveal .hobby-card.accent-teal {
+  border-top: 3px solid var(--life-teal);
+}
+
+.deck-life .reveal .hobby-card.accent-coral {
+  border-top: 3px solid var(--life-coral);
+}
+
+.deck-life .reveal .hobby-card.accent-sun {
+  border-top: 3px solid var(--life-sun);
+}
+
+.deck-life .reveal .media-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
+  margin: 0.6em 0;
+}
+
+.deck-life .reveal .media-row.single {
+  grid-template-columns: 1fr;
+  max-width: 70%;
+}
+
+.deck-life .reveal .media-card {
+  display: block;
+  background: var(--life-card);
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.25s ease;
+}
+
+.deck-life .reveal .media-card:hover {
+  transform: translateY(-3px);
+}
+
+.deck-life .reveal .media-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #0f172a;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+}
+
+.deck-life .reveal .media-card .caption {
+  padding: 0.45em 0.65em 0.55em;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.55em;
+  font-weight: 700;
+  color: var(--life-ink);
+}
+
+.deck-life .reveal .media-card .caption span {
+  display: block;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 500;
+  color: var(--life-muted);
+  margin-top: 0.15em;
+}
+
+.deck-life .reveal .link-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.55rem;
+  margin-top: 0.7em;
+}
+
+.deck-life .reveal .link-pill {
+  display: block;
+  background: var(--life-card);
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  padding: 0.65em 0.8em;
+  text-decoration: none;
+  color: var(--life-ink);
+}
+
+.deck-life .reveal .link-pill strong {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.72em;
+  margin-bottom: 0.15em;
+}
+
+.deck-life .reveal .link-pill span {
+  font-size: 0.55em;
+  color: var(--life-muted);
+}
+
+.deck-life .reveal .phase {
+  background: var(--life-card);
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  padding: 0.55em 0.8em;
+  margin: 0.35em 0;
+  font-size: 0.88em;
+}
+
+.deck-life .reveal .phase strong {
+  display: block;
+  font-family: 'Sora', sans-serif;
+  font-size: 0.85em;
+  margin-bottom: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-life .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, blockquote, table, .hobby-grid, .media-row, .link-row, .stat-row, .phase),
+  .deck-life .reveal h2::after {
+    animation: none !important;
+  }
+}
