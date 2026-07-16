@@ -1,0 +1,417 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Orbitron:wght@600;700;800&display=swap');
+
+:root {
+  --mecha-ink: #0b1220;
+  --mecha-ink-soft: #1e293b;
+  --mecha-muted: #64748b;
+  --mecha-cyan: #0891b2;
+  --mecha-red: #dc2626;
+  --mecha-amber: #d97706;
+  --mecha-card: rgba(255, 255, 255, 0.88);
+  --mecha-line: rgba(11, 18, 32, 0.12);
+  --mecha-sky: #ecfeff;
+  --mecha-mist: #f8fafc;
+  --mecha-warm: #fff7ed;
+}
+
+html.deck-mecha,
+html.deck-mecha body {
+  background: var(--mecha-mist);
+}
+
+.deck-mecha .reveal {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 38px;
+  color: var(--mecha-ink-soft);
+  background:
+    radial-gradient(ellipse 70% 45% at 10% 0%, rgba(8, 145, 178, 0.18), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 95% 100%, rgba(220, 38, 38, 0.08), transparent 50%),
+    linear-gradient(175deg, var(--mecha-sky) 0%, var(--mecha-mist) 50%, var(--mecha-warm) 100%);
+}
+
+@keyframes mecha-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes mecha-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.deck-mecha .reveal .slides {
+  text-align: left;
+}
+
+.deck-mecha .reveal .slides > section,
+.deck-mecha .reveal .slides > section > section {
+  padding: 0.4em 4.5% 0.75em;
+  box-sizing: border-box;
+}
+
+.deck-mecha .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, table, .phase, .flow-path, .phase-map, .time-card, .demo-card, .vibe-grid) {
+  animation: mecha-rise 0.48s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-mecha .reveal h1,
+.deck-mecha .reveal h2,
+.deck-mecha .reveal h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  color: var(--mecha-ink);
+  text-transform: none;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-shadow: none;
+}
+
+.deck-mecha .reveal h1 {
+  font-size: 1.85em;
+  font-weight: 800;
+  margin-bottom: 0.25em;
+}
+
+.deck-mecha .reveal h2 {
+  font-size: 1.25em;
+  margin-bottom: 0.28em;
+}
+
+.deck-mecha .reveal h2::after {
+  content: '';
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin-top: 0.35rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--mecha-cyan), var(--mecha-red));
+  transform-origin: left center;
+  animation: mecha-bar 0.5s 0.12s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-mecha .reveal h3 {
+  font-size: 0.9em;
+  color: var(--mecha-cyan);
+  margin-bottom: 0.35em;
+}
+
+.deck-mecha .reveal p,
+.deck-mecha .reveal li {
+  font-size: 0.85em;
+  line-height: 1.3;
+  color: var(--mecha-ink-soft);
+}
+
+.deck-mecha .reveal p {
+  margin: 0.28em 0;
+}
+
+.deck-mecha .reveal strong {
+  color: var(--mecha-ink);
+  font-weight: 700;
+}
+
+.deck-mecha .reveal em {
+  color: var(--mecha-cyan);
+  font-style: italic;
+}
+
+.deck-mecha .reveal a {
+  color: var(--mecha-cyan);
+}
+
+.deck-mecha .reveal code {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  background: rgba(8, 145, 178, 0.12);
+  color: var(--mecha-ink);
+  padding: 0.08em 0.32em;
+  border-radius: 5px;
+  font-size: 0.82em;
+}
+
+.deck-mecha .reveal ul,
+.deck-mecha .reveal ol {
+  display: block;
+  margin: 0.25em 0;
+  padding-left: 1.05em;
+}
+
+.deck-mecha .reveal li {
+  margin: 0.18em 0;
+}
+
+.deck-mecha .reveal li::marker {
+  color: var(--mecha-cyan);
+}
+
+.deck-mecha .reveal table {
+  margin: 0.45em 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+  font-size: 0.58em;
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.deck-mecha .reveal table th {
+  background: rgba(8, 145, 178, 0.12);
+  color: var(--mecha-ink);
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.deck-mecha .reveal table th,
+.deck-mecha .reveal table td {
+  border: none;
+  border-bottom: 1px solid var(--mecha-line);
+  padding: 0.4em 0.5em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.deck-mecha .reveal table tr:last-child td {
+  border-bottom: none;
+}
+
+.deck-mecha .reveal .slide-number {
+  color: var(--mecha-muted);
+  background: transparent;
+}
+
+.deck-mecha .reveal .controls {
+  color: var(--mecha-cyan);
+}
+
+.deck-mecha .reveal .progress {
+  color: var(--mecha-red);
+  height: 3px;
+}
+
+.deck-mecha .reveal .slides section[data-state='title'],
+.deck-mecha .reveal .slides section[data-state='chapter'],
+.deck-mecha .reveal .slides section[data-state='closing'] {
+  text-align: center;
+}
+
+.deck-mecha .reveal .slides section[data-state='title'] h1,
+.deck-mecha .reveal .slides section[data-state='chapter'] h2,
+.deck-mecha .reveal .slides section[data-state='closing'] h2 {
+  text-align: center;
+}
+
+.deck-mecha .reveal .slides section[data-state='title'] h2::after,
+.deck-mecha .reveal .slides section[data-state='chapter'] h2::after,
+.deck-mecha .reveal .slides section[data-state='closing'] h2::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deck-mecha .reveal .slides section[data-state='title'] h1 {
+  font-size: 2em;
+}
+
+.deck-mecha .reveal .slides section[data-state='title'] p,
+.deck-mecha .reveal .slides section[data-state='chapter'] p,
+.deck-mecha .reveal .slides section[data-state='closing'] p {
+  text-align: center;
+  max-width: 22em;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--mecha-muted);
+}
+
+.deck-mecha .reveal .slides section[data-state='chapter'] h2 {
+  font-size: 1.65em;
+}
+
+.deck-mecha .reveal .eyebrow {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.42em;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mecha-red);
+  margin-bottom: 0.5em;
+}
+
+.deck-mecha .reveal .flow-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin: 0.5em 0 0.65em;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 0.48em;
+  color: var(--mecha-ink);
+}
+
+.deck-mecha .reveal .flow-path span {
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 8px;
+  padding: 0.45em 0.6em;
+}
+
+.deck-mecha .reveal .flow-path .arrow {
+  border: none;
+  background: transparent;
+  color: var(--mecha-cyan);
+  padding: 0;
+}
+
+.deck-mecha .reveal .phase {
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 12px;
+  padding: 0.5em 0.75em;
+  margin: 0.3em 0;
+  font-size: 0.82em;
+}
+
+.deck-mecha .reveal .phase strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.72em;
+  margin-bottom: 0.15em;
+}
+
+.deck-mecha .reveal .phase .badge {
+  display: inline-block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.48em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--mecha-cyan);
+  background: rgba(8, 145, 178, 0.12);
+  border-radius: 5px;
+  padding: 0.2em 0.45em;
+  margin-bottom: 0.3em;
+}
+
+.deck-mecha .reveal .phase.prompt {
+  border-left: 4px solid var(--mecha-amber);
+  font-size: 0.72em;
+}
+
+.deck-mecha .reveal .demo-card {
+  display: block;
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 14px;
+  padding: 0.75em 0.9em;
+  text-decoration: none;
+  color: inherit;
+  margin: 0.55em 0;
+  border-top: 3px solid var(--mecha-cyan);
+}
+
+.deck-mecha .reveal .demo-card strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78em;
+  margin-bottom: 0.2em;
+}
+
+.deck-mecha .reveal .demo-card span {
+  font-size: 0.62em;
+  color: var(--mecha-muted);
+}
+
+.deck-mecha .reveal .vibe-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem;
+  margin: 0.5em 0;
+}
+
+.deck-mecha .reveal .time-card {
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 12px;
+  padding: 0.5em 0.65em;
+}
+
+.deck-mecha .reveal .time-card .when {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.45em;
+  font-weight: 700;
+  color: var(--mecha-cyan);
+  letter-spacing: 0.04em;
+}
+
+.deck-mecha .reveal .time-card strong {
+  display: block;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.62em;
+  margin: 0.15em 0 0.2em;
+}
+
+.deck-mecha .reveal .time-card p {
+  margin: 0;
+  font-size: 0.55em;
+  color: var(--mecha-muted);
+  line-height: 1.28;
+}
+
+.deck-mecha .reveal .media-card {
+  display: block;
+  background: var(--mecha-card);
+  border: 1px solid var(--mecha-line);
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  margin: 0.5em 0;
+  max-width: 72%;
+}
+
+.deck-mecha .reveal .media-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  background: #0f172a;
+}
+
+.deck-mecha .reveal .media-card .caption {
+  padding: 0.4em 0.65em 0.5em;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.48em;
+  font-weight: 700;
+  color: var(--mecha-ink);
+}
+
+.deck-mecha .reveal .media-card .caption span {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  color: var(--mecha-muted);
+  margin-top: 0.15em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-mecha .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, table, .phase, .flow-path, .phase-map, .time-card, .demo-card, .vibe-grid),
+  .deck-mecha .reveal h2::after {
+    animation: none !important;
+  }
+}

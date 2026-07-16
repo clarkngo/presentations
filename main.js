@@ -7,9 +7,11 @@ import 'reveal.js/plugin/highlight/monokai.css';
 
 const params = new URLSearchParams(window.location.search);
 const deck = params.get('deck') || 'demo-presentation';
-const isVibeDeck = deck.includes('vibe-coding');
+const isVibeDeck = deck.includes('vibe-coding') && !deck.includes('thexmecha');
 const isLifeDeck = deck.includes('clark') || deck.includes('meet-clark');
-const isThemedDeck = isVibeDeck || isLifeDeck;
+const isPipelineDeck = deck.includes('pipeline') || deck.includes('image-pipeline');
+const isMechaDeck = deck.includes('thexmecha') || deck.includes('thex-mecha');
+const isThemedDeck = isVibeDeck || isLifeDeck || isPipelineDeck || isMechaDeck;
 
 const section = document.querySelector('[data-markdown]');
 
@@ -50,6 +52,14 @@ async function init() {
     document.documentElement.classList.add('deck-life');
     await import('./styles/clark-life.css');
     document.title = 'Meet Clark Ngo';
+  } else if (isPipelineDeck) {
+    document.documentElement.classList.add('deck-pipeline');
+    await import('./styles/pipeline.css');
+    document.title = 'Incremental Image Pipeline';
+  } else if (isMechaDeck) {
+    document.documentElement.classList.add('deck-mecha');
+    await import('./styles/thexmecha.css');
+    document.title = 'ThexMecha — Vibe Coding Lab';
   } else {
     await import('reveal.js/dist/theme/white-contrast.css');
   }
