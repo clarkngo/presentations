@@ -3,19 +3,70 @@ import Markdown from 'reveal.js/plugin/markdown/markdown.esm.js';
 import Highlight from 'reveal.js/plugin/highlight/highlight.esm.js';
 
 import 'reveal.js/dist/reveal.css';
-import 'reveal.js/dist/theme/black.css';
 import 'reveal.js/plugin/highlight/monokai.css';
 
 const params = new URLSearchParams(window.location.search);
 const deck = params.get('deck') || 'demo-presentation';
+const isVibeDeck = deck.includes('vibe-coding');
 
 const section = document.querySelector('[data-markdown]');
-if (section) {
-  section.setAttribute('data-markdown', `./decks/${deck}.md`);
+
+if (isVibeDeck) {
+  document.documentElement.classList.add('deck-vibe');
+  await import('./styles/vibe-coding.css');
+  document.title = deck.includes('aviators')
+    ? 'Vibe Coding for Future Aviators'
+    : 'The Vibe Coding Revolution';
+} else {
+  await import('reveal.js/dist/theme/white-contrast.css');
+}
+
+async function prepareMarkdown() {
+  if (!section) return;
+
+  const response = await fetch(`./decks/${deck}.md`);
+  if (!response.ok) {
+    throw new Error(`Failed to load deck: ${deck}`);
+  }
+
+  let markdown = await response.text();
+  // Strip YAML frontmatter so it doesn't become a blank first slide
+  markdown = markdown.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
+
+  // Empty data-markdown = parse inline content (must keep the attribute)
+  section.setAttribute('data-markdown', '');
+  section.setAttribute('data-separator', '\r?\n---\r?\n');
+  section.setAttribute('data-separator-vertical', '\r?\n--\r?\n');
+  section.setAttribute('data-separator-notes', '^Note:');
+
+  // Reveal reads textContent from a script/template node (not textarea.value)
+  const template = document.createElement('script');
+  template.type = 'text/template';
+  template.setAttribute('data-template', '');
+  template.textContent = markdown;
+  section.replaceChildren(template);
+}
+
+try {
+  await prepareMarkdown();
+} catch (error) {
+  console.error(error);
+  if (section) {
+    section.outerHTML = `<section><h2>Could not load deck</h2><p>${deck}</p></section>`;
+  }
 }
 
 Reveal.initialize({
   hash: true,
   slideNumber: true,
+  center: true,
+  width: isVibeDeck ? 1100 : 960,
+  height: isVibeDeck ? 900 : 700,
+  margin: 0.04,
+  transition: isVibeDeck ? 'slide' : 'fade',
+  backgroundTransition: 'fade',
   plugins: [Markdown, Highlight],
+  markdown: {
+    verticalSeparator: '\r?\n--\r?\n',
+  },
 });
