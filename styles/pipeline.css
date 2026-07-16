@@ -1,0 +1,357 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,500&family=IBM+Plex+Mono:wght@500;600&family=Saira:wght@600;700;800&display=swap');
+
+:root {
+  --pipe-ink: #0f172a;
+  --pipe-ink-soft: #334155;
+  --pipe-muted: #64748b;
+  --pipe-blue: #0369a1;
+  --pipe-steel: #0e7490;
+  --pipe-amber: #b45309;
+  --pipe-card: rgba(255, 255, 255, 0.88);
+  --pipe-line: rgba(15, 23, 42, 0.12);
+  --pipe-sky: #e0f2fe;
+  --pipe-mist: #f1f5f9;
+  --pipe-warm: #fff7ed;
+}
+
+html.deck-pipeline,
+html.deck-pipeline body {
+  background: var(--pipe-mist);
+}
+
+.deck-pipeline .reveal {
+  font-family: 'IBM Plex Sans', sans-serif;
+  font-weight: 500;
+  font-size: 40px;
+  color: var(--pipe-ink-soft);
+  background:
+    radial-gradient(ellipse 80% 50% at 0% 0%, rgba(3, 105, 161, 0.14), transparent 55%),
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(180, 83, 9, 0.08), transparent 50%),
+    linear-gradient(180deg, var(--pipe-sky) 0%, var(--pipe-mist) 48%, var(--pipe-warm) 100%);
+}
+
+@keyframes pipe-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pipe-bar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.deck-pipeline .reveal .slides {
+  text-align: left;
+}
+
+.deck-pipeline .reveal .slides > section,
+.deck-pipeline .reveal .slides > section > section {
+  padding: 0.45em 5% 0.8em;
+  box-sizing: border-box;
+}
+
+.deck-pipeline .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, blockquote, .step-grid, .phase, .flow-path, .phase-map) {
+  animation: pipe-rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-pipeline .reveal .slides section.present > h2 {
+  animation-delay: 0.04s;
+}
+.deck-pipeline .reveal .slides section.present > p:nth-of-type(1) {
+  animation-delay: 0.1s;
+}
+.deck-pipeline .reveal .slides section.present > :is(ul, .step-grid, .phase-map, .flow-path) {
+  animation-delay: 0.16s;
+}
+
+.deck-pipeline .reveal h1,
+.deck-pipeline .reveal h2,
+.deck-pipeline .reveal h3 {
+  font-family: 'Saira', sans-serif;
+  font-weight: 700;
+  color: var(--pipe-ink);
+  text-transform: none;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  text-shadow: none;
+}
+
+.deck-pipeline .reveal h1 {
+  font-size: 2em;
+  font-weight: 800;
+  margin-bottom: 0.25em;
+}
+
+.deck-pipeline .reveal h2 {
+  font-size: 1.4em;
+  margin-bottom: 0.28em;
+}
+
+.deck-pipeline .reveal h2::after {
+  content: '';
+  display: block;
+  width: 2.75rem;
+  height: 3px;
+  margin-top: 0.35rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--pipe-blue), var(--pipe-amber));
+  transform-origin: left center;
+  animation: pipe-bar 0.5s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.deck-pipeline .reveal h3 {
+  font-size: 0.95em;
+  color: var(--pipe-steel);
+  margin-bottom: 0.35em;
+}
+
+.deck-pipeline .reveal p,
+.deck-pipeline .reveal li {
+  font-size: 0.9em;
+  line-height: 1.32;
+  color: var(--pipe-ink-soft);
+}
+
+.deck-pipeline .reveal p {
+  margin: 0.3em 0;
+}
+
+.deck-pipeline .reveal strong {
+  color: var(--pipe-ink);
+  font-weight: 700;
+}
+
+.deck-pipeline .reveal em {
+  color: var(--pipe-blue);
+  font-style: italic;
+}
+
+.deck-pipeline .reveal code {
+  font-family: 'IBM Plex Mono', monospace;
+  background: rgba(3, 105, 161, 0.1);
+  color: var(--pipe-ink);
+  padding: 0.1em 0.35em;
+  border-radius: 5px;
+  font-size: 0.85em;
+}
+
+.deck-pipeline .reveal ul,
+.deck-pipeline .reveal ol {
+  display: block;
+  margin: 0.3em 0;
+  padding-left: 1.1em;
+}
+
+.deck-pipeline .reveal li {
+  margin: 0.22em 0;
+}
+
+.deck-pipeline .reveal li::marker {
+  color: var(--pipe-blue);
+}
+
+.deck-pipeline .reveal .slide-number {
+  color: var(--pipe-muted);
+  background: transparent;
+}
+
+.deck-pipeline .reveal .controls {
+  color: var(--pipe-blue);
+}
+
+.deck-pipeline .reveal .progress {
+  color: var(--pipe-amber);
+  height: 3px;
+}
+
+.deck-pipeline .reveal .slides section[data-state='title'],
+.deck-pipeline .reveal .slides section[data-state='chapter'],
+.deck-pipeline .reveal .slides section[data-state='closing'] {
+  text-align: center;
+}
+
+.deck-pipeline .reveal .slides section[data-state='title'] h1,
+.deck-pipeline .reveal .slides section[data-state='chapter'] h2,
+.deck-pipeline .reveal .slides section[data-state='closing'] h2 {
+  text-align: center;
+}
+
+.deck-pipeline .reveal .slides section[data-state='title'] h2::after,
+.deck-pipeline .reveal .slides section[data-state='chapter'] h2::after,
+.deck-pipeline .reveal .slides section[data-state='closing'] h2::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deck-pipeline .reveal .slides section[data-state='title'] h1 {
+  font-size: 2.15em;
+}
+
+.deck-pipeline .reveal .slides section[data-state='title'] p,
+.deck-pipeline .reveal .slides section[data-state='chapter'] p,
+.deck-pipeline .reveal .slides section[data-state='closing'] p {
+  text-align: center;
+  max-width: 20em;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--pipe-muted);
+}
+
+.deck-pipeline .reveal .slides section[data-state='chapter'] h2 {
+  font-size: 1.85em;
+}
+
+.deck-pipeline .reveal .eyebrow {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.48em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--pipe-blue);
+  margin-bottom: 0.55em;
+}
+
+.deck-pipeline .reveal .phase-map {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.55rem;
+  margin: 0.7em 0;
+}
+
+.deck-pipeline .reveal .phase-card {
+  background: var(--pipe-card);
+  border: 1px solid var(--pipe-line);
+  border-radius: 12px;
+  padding: 0.7em 0.75em;
+  border-top: 3px solid var(--pipe-blue);
+}
+
+.deck-pipeline .reveal .phase-card.build {
+  border-top-color: var(--pipe-steel);
+}
+
+.deck-pipeline .reveal .phase-card.qa {
+  border-top-color: var(--pipe-amber);
+}
+
+.deck-pipeline .reveal .phase-card strong {
+  display: block;
+  font-family: 'Saira', sans-serif;
+  font-size: 0.72em;
+  margin-bottom: 0.25em;
+}
+
+.deck-pipeline .reveal .phase-card p {
+  margin: 0;
+  font-size: 0.58em;
+  color: var(--pipe-muted);
+  line-height: 1.3;
+}
+
+.deck-pipeline .reveal .phase {
+  background: var(--pipe-card);
+  border: 1px solid var(--pipe-line);
+  border-radius: 12px;
+  padding: 0.55em 0.8em;
+  margin: 0.35em 0;
+  font-size: 0.88em;
+}
+
+.deck-pipeline .reveal .phase strong {
+  display: block;
+  font-family: 'Saira', sans-serif;
+  font-size: 0.82em;
+  margin-bottom: 0.15em;
+}
+
+.deck-pipeline .reveal .phase .badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55em;
+  font-weight: 600;
+  color: var(--pipe-blue);
+  background: rgba(3, 105, 161, 0.1);
+  border-radius: 5px;
+  padding: 0.15em 0.4em;
+  margin-bottom: 0.35em;
+}
+
+.deck-pipeline .reveal .flow-path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+  margin: 0.55em 0 0.7em;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 600;
+  font-size: 0.62em;
+  color: var(--pipe-ink);
+}
+
+.deck-pipeline .reveal .flow-path span {
+  background: var(--pipe-card);
+  border: 1px solid var(--pipe-line);
+  border-radius: 8px;
+  padding: 0.4em 0.65em;
+}
+
+.deck-pipeline .reveal .flow-path .arrow {
+  border: none;
+  background: transparent;
+  color: var(--pipe-blue);
+  padding: 0;
+}
+
+.deck-pipeline .reveal .step-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+  margin: 0.55em 0;
+}
+
+.deck-pipeline .reveal .step {
+  background: var(--pipe-card);
+  border: 1px solid var(--pipe-line);
+  border-radius: 12px;
+  padding: 0.55em 0.7em;
+}
+
+.deck-pipeline .reveal .step .num {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.5em;
+  font-weight: 600;
+  color: var(--pipe-blue);
+  letter-spacing: 0.04em;
+}
+
+.deck-pipeline .reveal .step strong {
+  display: block;
+  font-family: 'Saira', sans-serif;
+  font-size: 0.72em;
+  margin: 0.15em 0 0.2em;
+}
+
+.deck-pipeline .reveal .step p {
+  margin: 0;
+  font-size: 0.58em;
+  color: var(--pipe-muted);
+  line-height: 1.3;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck-pipeline .reveal .slides section.present > :is(h1, h2, h3, p, ul, ol, blockquote, .step-grid, .phase, .flow-path, .phase-map),
+  .deck-pipeline .reveal h2::after {
+    animation: none !important;
+  }
+}
